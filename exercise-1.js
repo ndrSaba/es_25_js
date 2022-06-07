@@ -2,8 +2,8 @@ const person = {
   _firstName: "",
   _lastName: "",
 
-  NewPerson(firstName, lastName){
-    this._firstName = firstName; 
+  NewPerson(firstName, lastName) {
+    this._firstName = firstName;
     this._lastName = lastName;
   },
 
@@ -14,7 +14,7 @@ const person = {
   set firstNameSetter(value) {
     this._firstName = value;
   },
-  
+
   get lastName() {
     this._lastName;
   },
@@ -29,11 +29,24 @@ const person = {
 
 }
 
-  person.NewPerson( 'John', 'Doe');
-  const john = Object.assign({}, person);
-  
-  person.NewPerson( 'Simon', 'Collins');
-  const simon = Object.assign({}, person);
+// person.NewPerson('John', 'Doe');
+const john = Object.create(person, {
+  '_firstName': {
+    value: "John",
+  },
+  '_lastName': {
+    value: "Doe",
+  }
+});
 
-  console.log(john.fullName()); // John Doe
-  console.log(simon.fullName()); // Simon Collins
+const simon = Object.create(person, {
+  '_firstName': {
+    value: "Simon",
+  },
+  '_lastName': {
+    value: "Collins",
+  }
+});
+
+console.log(john.fullName()); // John Doe
+console.log(simon.fullName()); // Simon Collins
