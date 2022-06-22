@@ -1,52 +1,33 @@
 const person = {
-  _firstName: "",
-  _lastName: "",
-
-  NewPerson(firstName, lastName) {
-    this._firstName = firstName;
-    this._lastName = lastName;
+  get firstName (){
+    return this.name
   },
 
-  get firstName() {
-    this._firstName;
+  set firstName (name){
+    this.name = name
   },
 
-  set firstNameSetter(value) {
-    this._firstName = value;
+  get lastName () {
+    return this.surname
   },
 
-  get lastName() {
-    this._lastName;
+  set lastName (surname) {
+    this.surname = surname
   },
 
-  set lastNameSetter(value) {
-    this._lastName = value;
+  fullName(){
+    return `${this.firstName} ${this.lastName}`
   },
-
-  fullName() {
-    return this._firstName + " " + this._lastName;
-  }
-
 }
 
 // person.NewPerson('John', 'Doe');
-const john = Object.create(person, {
-  '_firstName': {
-    value: "John",
-  },
-  '_lastName': {
-    value: "Doe",
-  }
-});
+const john = Object.create(person)
+john.firstName = 'John'
+john.lastName = 'Doe'
 
-const simon = Object.create(person, {
-  '_firstName': {
-    value: "Simon",
-  },
-  '_lastName': {
-    value: "Collins",
-  }
-});
+const simon = Object.create(person)
+simon.firstName = 'Simon'
+simon.lastName = 'Collins'
 
 console.log(john.fullName()); // John Doe
 console.log(simon.fullName()); // Simon Collins
